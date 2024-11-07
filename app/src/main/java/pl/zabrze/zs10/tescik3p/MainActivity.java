@@ -3,10 +3,12 @@ package pl.zabrze.zs10.tescik3p;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,26 @@ public class MainActivity extends AppCompatActivity {
         buttonDalej = findViewById(R.id.buttonDalej);
         buttonSprawdz = findViewById(R.id.buttonSprawdz);
         wyswietlPytanie();
-
+        buttonSprawdz.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int odpowiedz = radioGroup.getCheckedRadioButtonId();
+                        for (int i = 0; i < radioButtons.length; i++) {
+                            if(odpowiedz == radioButtons[i].getId()){
+                                pytania.get(aktualne).sprawdzOdpowiedz(i);
+                                if(pytania.get(aktualne).isCzyUdzielonoPoprawnejOdpowiedzi()) {
+                                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(MainActivity.this, "ŻLE", Toast.LENGTH_SHORT).show();
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+        );
 
 
 
