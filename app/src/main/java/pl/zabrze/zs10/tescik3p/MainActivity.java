@@ -61,9 +61,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        buttonDalej.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aktualne++;
+                        if(aktualne<pytania.size())
+                            wyswietlPytanie();
+                        else {
 
-
-
+                        }
+                    }
+                }
+        );
     }
     private void wyswietlPytanie(){
         Pytanie pytanie = pytania.get(aktualne);
